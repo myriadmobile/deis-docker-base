@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 ENV TERM=xterm
 
@@ -6,7 +6,7 @@ ENV TERM=xterm
 RUN sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list && \
     export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get upgrade -y --no-install-recommends && \
+    apt-get dist-upgrade -y --no-install-recommends && \
     apt-get install -y --no-install-recommends \
         bash \
         ca-certificates \
@@ -16,9 +16,6 @@ RUN sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list && \
     # cleanup
     apt-get autoremove -y && \
     apt-get clean -y && \
-    # package up license files if any by appending to existing tar
-    COPYRIGHT_TAR='/usr/share/copyrights.tar'; \
-    gunzip $COPYRIGHT_TAR.gz; tar -rf $COPYRIGHT_TAR /usr/share/doc/*/copyright; gzip $COPYRIGHT_TAR && \
     rm -rf \
         /usr/share/doc \
         /usr/share/man \
