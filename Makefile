@@ -1,5 +1,5 @@
 VERSION := $(shell git describe --tags --exact-match 2>/dev/null || echo latest)
-IMAGE_PREFIX ?= myriadmobile
+IMAGE_PREFIX ?= bushelpowered
 IMAGE := ${IMAGE_PREFIX}/deis-docker-base:${VERSION}
 
 build:
