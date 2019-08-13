@@ -3,7 +3,7 @@ IMAGE_PREFIX ?= bushelpowered
 IMAGE := ${IMAGE_PREFIX}/deis-docker-base:${VERSION}
 
 build:
-	docker build --no-cache -t ${IMAGE} rootfs
+	docker build --pull --no-cache -t ${IMAGE} rootfs
 
 push: build
 	docker push ${IMAGE}
